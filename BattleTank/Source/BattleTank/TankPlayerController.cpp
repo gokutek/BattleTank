@@ -3,5 +3,7 @@
 #include "TankPlayerController.h"
 
 
-
-
+ATank* ATankPlayerController::GetControllerTank() const
+{
+    return Cast<ATank>(Super::GetPawn());
+}
