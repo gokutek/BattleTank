@@ -8,18 +8,19 @@ void ATankPlayerController::BeginPlay()
 }
 
 
-void ATankPlayerController::Possess(APawn * InPawn)
+void ATankPlayerController::Tick(float DeltaTime)
 {
-    Super::Possess(InPawn);
-
-    if (InPawn)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("ATankPlayerController::Possess: %s"), *InPawn->GetName());
-    }
+    Super::Tick(DeltaTime);
 }
 
 
 ATank* ATankPlayerController::GetControllerTank() const
 {
     return Cast<ATank>(Super::GetPawn());
+}
+
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+
 }
