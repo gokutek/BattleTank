@@ -25,10 +25,22 @@ ATank* ATankPlayerController::GetControllerTank() const
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
+    FVector HitLocation;
+    if (GetSightRayHitLocation(HitLocation))
+    {
+
+    }
 }
 
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 {
+    // 获取准心的屏幕坐标
+    int32 ViewportSizeX, ViewportSizeY;
+    GetViewportSize(ViewportSizeX, ViewportSizeY);
+    FVector2D ScreenLocation(ViewportSizeX * CrosshairPositionX, ViewportSizeY * CrosshairPositionY);
+
+    // 屏幕坐标转3D坐标
+
     return true;
 }
