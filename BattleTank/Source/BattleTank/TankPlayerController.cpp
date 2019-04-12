@@ -38,18 +38,31 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
     // 获取准心的屏幕坐标
     int32 ViewportSizeX, ViewportSizeY;
     GetViewportSize(ViewportSizeX, ViewportSizeY);
-    FVector2D ScreenLocation(ViewportSizeX * CrosshairPositionX, ViewportSizeY * CrosshairPositionY);
+    FVector2D ScreenLocation(ViewportSizeX * CrosshairPositionX,
+        ViewportSizeY * CrosshairPositionY);
 
     // 屏幕坐标转3D坐标
     FVector CameraWorldPosition;
-    FVector WorldDirection;
-    if (!DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraWorldPosition, WorldDirection))
+    FVector LookDirection;
+    if (!DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, 
+        CameraWorldPosition, LookDirection))
     {
         return false;
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("WorldDirection = %s"), *WorldDirection.ToString());
-
     // Trace
+    FHitResult HitResult;
+    FVector StartPosition = PlayerCameraManager->GetCameraLocation();
+    FVector EndPosition = StartPosition + LookDirection * 1000000;
+    if (!GetWorld()->LineTraceSingleByChannel(HitResult, 
+        StartPosition,
+        EndPosition,
+        ECC_Visibility))
+    {
+        return false;
+    }
+    
+    HitLocation = HitResult.Location;
+
     return true;
 }
