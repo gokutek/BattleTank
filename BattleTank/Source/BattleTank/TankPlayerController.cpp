@@ -41,7 +41,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
     FVector2D ScreenLocation(ViewportSizeX * CrosshairPositionX,
         ViewportSizeY * CrosshairPositionY);
 
-    // 屏幕坐标转3D坐标
+    // 根据屏幕坐标，求摄像机坐标、观察方向
     FVector CameraWorldPosition;
     FVector LookDirection;
     if (!DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, 
