@@ -19,3 +19,15 @@ ATank* ATankAIController::GetPlayerTank() const
 {
     return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 }
+
+
+void ATankAIController::Tick(float DeltaTime)
+{
+    // 将AI控制的坦克瞄准玩家控制的坦克
+    ATank* OurTank = Cast<ATank>(GetPawn());
+    ATank* PlayerTank = GetPlayerTank();
+    if (OurTank && PlayerTank)
+    {
+        OurTank->AimAt(PlayerTank->GetActorLocation());
+    }
+}
