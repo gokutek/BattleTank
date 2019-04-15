@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "TankAimingComponent.h"
 #include "Tank.generated.h"
 
 UCLASS()
@@ -16,6 +17,10 @@ public:
 	ATank();
 
     void AimAt(FVector const& HitLocation);
+
+protected:
+    UPROPERTY()
+    UTankAimingComponent* AimingComponent;
 
 protected:
 	// Called when the game starts or when spawned
