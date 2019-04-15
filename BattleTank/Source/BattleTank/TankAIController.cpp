@@ -1,12 +1,20 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAIController.h"
 #include "Tank.h"
 #include "Engine/World.h"
 
 
+ATankAIController::ATankAIController()
+{
+    PrimaryActorTick.bCanEverTick = true;
+}
+
+
 void ATankAIController::BeginPlay()
 {
+    Super::BeginPlay();
+
     ATank* tank = GetPlayerTank();
     if (tank)
     {
@@ -23,7 +31,9 @@ ATank* ATankAIController::GetPlayerTank() const
 
 void ATankAIController::Tick(float DeltaTime)
 {
-    // ½«AI¿ØÖÆµÄÌ¹¿ËÃé×¼Íæ¼Ò¿ØÖÆµÄÌ¹¿Ë
+    Super::Tick(DeltaTime);
+
+    // å°†AIæ§åˆ¶çš„å¦å…‹ç„å‡†ç©å®¶æ§åˆ¶çš„å¦å…‹
     ATank* OurTank = Cast<ATank>(GetPawn());
     ATank* PlayerTank = GetPlayerTank();
     if (OurTank && PlayerTank)
