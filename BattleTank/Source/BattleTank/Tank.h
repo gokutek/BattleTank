@@ -18,6 +18,9 @@ public:
 
     void AimAt(FVector const& HitLocation);
 
+    UFUNCTION(BlueprintCallable, Category = Setup)
+    void SetBarrel(UStaticMeshComponent* Barrel);
+
 protected:
     UPROPERTY()
     UTankAimingComponent* AimingComponent;
