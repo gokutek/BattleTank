@@ -35,7 +35,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::AimAt(FVector const& HitLocation)
 {
-    AimingComponent->AimAt(HitLocation);
+    AimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 
