@@ -60,6 +60,13 @@ void UTankAimingComponent::AimAt(FVector const &HitLocation, float LaunchSpeed)
 
     FVector AimDirection = TossVelocity.GetSafeNormal();
 
-    UE_LOG(LogTemp, Warning, TEXT("%s: %s"), *GetOwner()->GetName(),
-        *AimDirection.ToString());
+    MoveBarrelTowards(AimDirection);
+}
+
+
+void UTankAimingComponent::MoveBarrelTowards(FVector const &AimDirection)
+{
+    FRotator const BarrelRotator = Barrel->GetForwardVector().Rotation();
+    FRotator const AimRotator = AimDirection.Rotation();
+    FRotator const DeltaRotator = AimRotator - BarrelRotator;
 }
