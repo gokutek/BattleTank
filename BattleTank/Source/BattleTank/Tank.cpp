@@ -39,7 +39,7 @@ void ATank::AimAt(FVector const& HitLocation)
 }
 
 
-void ATank::SetBarrel(UStaticMeshComponent* Barrel)
+void ATank::SetBarrel(UTankBarrel* Barrel)
 {
     AimingComponent->SetBarrel(Barrel);
 }
