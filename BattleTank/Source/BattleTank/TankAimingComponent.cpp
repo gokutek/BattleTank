@@ -44,6 +44,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector const &HitLocation, float LaunchSpeed)
 {
+    if (!Barrel)
+    {
+        return;
+    }
+
     FVector TossVelocity;
     bool result = UGameplayStatics::SuggestProjectileVelocity(this, TossVelocity,
         Barrel->GetSocketLocation(TEXT("Projectile")),
@@ -70,5 +75,5 @@ void UTankAimingComponent::MoveBarrelTowards(FVector const &AimDirection)
     FRotator const BarrelRotator = Barrel->GetForwardVector().Rotation();
     FRotator const AimRotator = AimDirection.Rotation();
     FRotator const DeltaRotator = AimRotator - BarrelRotator;
-    Barrel->Elevate();
+    Barrel->Elevate(DeltaRotator.Pitch);
 }

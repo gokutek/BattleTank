@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -15,14 +15,15 @@ class BATTLETANK_API UTankBarrel : public UStaticMeshComponent
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, Category = Setup)
-    float MaxDegreesPerSeconds = 20;
+    float MaxDegreesPerSeconds = 5; // æ¯ç§’ç§»åŠ¨çš„è§’åº¦
 
     UPROPERTY(EditAnywhere, Category = Setup)
-    float MaxElevateDegrees = 40; // ÅÚÍ²ÏòÉÏ¿ÉÒÔÌ§ÆğµÄ×î´ó½Ç¶È
+    float MaxElevateDegrees = 40; // ç‚®ç­’å‘ä¸Šå¯ä»¥æŠ¬èµ·çš„æœ€å¤§è§’åº¦
     
     UPROPERTY(EditAnywhere, Category = Setup)
-    float MinDegreesPerSeconds = 0; // ÅÚÍ²ÏòÏÂ¿ÉÒÔÌ§ÆğµÄ×î´ó½Ç¶È
+    float MinElevateDegrees = 0; // ç‚®ç­’å‘ä¸‹å¯ä»¥æŠ¬èµ·çš„æœ€å¤§è§’åº¦
 
 public:
-    void Elevate();
+    // æ”¹å˜Pitch
+    void Elevate(float RelativeSpeed);
 };
