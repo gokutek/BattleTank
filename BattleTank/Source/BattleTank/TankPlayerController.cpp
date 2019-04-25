@@ -3,6 +3,8 @@
 #include "TankPlayerController.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tank.h"
+
 
 void ATankPlayerController::BeginPlay()
 {
