@@ -8,6 +8,7 @@
 
 
 class UTankBarrel;
+class UTankTurret;
 class UTankAimingComponent;
 
 
@@ -24,6 +25,9 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = Setup)
     void SetBarrel(UTankBarrel* Barrel);
+
+    UFUNCTION(BlueprintCallable, Category = Setup)
+    void SetTurret(UTankTurret* Turret);
 
 protected:
     UPROPERTY()

@@ -7,6 +7,7 @@
 #include "TankAimingComponent.generated.h"
 
 class UTankBarrel;
+class UTankTurret;
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -27,6 +28,9 @@ public:
     // 设置炮筒组件的引用
     void SetBarrel(UTankBarrel* Barrel);
 
+    // 设置炮台组件的引用
+    void SetTurret(UTankTurret* Turret);
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -37,4 +41,7 @@ private:
 private:
     UPROPERTY()
     UTankBarrel* Barrel;
+
+    UPROPERTY()
+    UTankTurret* Turret;
 };
