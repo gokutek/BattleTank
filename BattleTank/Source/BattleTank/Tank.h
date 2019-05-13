@@ -43,5 +43,5 @@ public:
 
 private:
     UPROPERTY(EditAnywhere, Category = Firing)
-    float LaunchSpeed;
+    float LaunchSpeed = 4000;
 };
