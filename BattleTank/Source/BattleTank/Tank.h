@@ -10,6 +10,7 @@
 class UTankBarrel;
 class UTankTurret;
 class UTankAimingComponent;
+class AProjectile;
 
 
 UCLASS()
@@ -47,4 +48,10 @@ public:
 private:
     UPROPERTY(EditAnywhere, Category = Firing)
     float LaunchSpeed = 4000;
+
+    UPROPERTY(EditAnywhere, Category = Firing)
+    TSubclassOf<AProjectile> ProjectileBlueprint;
+
+    UPROPERTY()
+    UTankBarrel* TankBarrel;
 };
