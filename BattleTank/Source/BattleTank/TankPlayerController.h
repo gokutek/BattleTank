@@ -18,10 +18,10 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
     GENERATED_BODY()
 
-    UPROPERTY(EditAnywhere)
+    UPROPERTY(EditDefaultsOnly)
     float CrosshairPositionX = 0.5f; // 在屏幕上的位置与视口的比例
     
-    UPROPERTY(EditAnywhere)
+    UPROPERTY(EditDefaultsOnly)
     float CrosshairPositionY = 0.3333f;
 
 public:
