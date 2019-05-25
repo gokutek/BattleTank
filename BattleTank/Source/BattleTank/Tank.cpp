@@ -55,12 +55,15 @@ void ATank::Fire()
 {
     UE_LOG(LogTemp, Warning, TEXT("Fire..."));
 
-    if (!TankBarrel) { return; }
+    bool isReloaded = FPlatformTime::Seconds() - LastFireSeconds > ReloadTimeInSeconds;
 
-    FVector const Location = TankBarrel->GetSocketLocation(FName("Projectile"));
-    FRotator const Rotation = TankBarrel->GetSocketRotation(FName("Projectile"));
+    if (isReloaded && TankBarrel) {
+        FVector const Location = TankBarrel->GetSocketLocation(FName("Projectile"));
+        FRotator const Rotation = TankBarrel->GetSocketRotation(FName("Projectile"));
 
+        AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Location, Rotation);
+        Projectile->LaunchProjectile(LaunchSpeed);
 
-    AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Location, Rotation);
-    Projectile->LaunchProjectile(LaunchSpeed);
+        LastFireSeconds = FPlatformTime::Seconds();
+    }
 }

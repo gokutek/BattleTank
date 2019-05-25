@@ -54,4 +54,8 @@ private:
 
     UPROPERTY()
     UTankBarrel* TankBarrel;
+
+    float ReloadTimeInSeconds = 3.0f;
+
+    double LastFireSeconds = 0.0;
 };
