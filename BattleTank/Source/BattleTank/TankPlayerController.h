@@ -29,6 +29,7 @@ public:
 
     virtual void Tick(float DeltaTime) override;
 
+    UFUNCTION(BlueprintCallable, Category = "Setup")
     ATank* GetControllerTank() const;
 
     void AimTowardsCrosshair();

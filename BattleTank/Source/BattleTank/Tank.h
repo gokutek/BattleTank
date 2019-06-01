@@ -35,7 +35,7 @@ public:
     void Fire();
 
 protected:
-    UPROPERTY()
+    UPROPERTY(BlueprintReadOnly)
     UTankAimingComponent* AimingComponent;
 
 protected:
