@@ -10,6 +10,15 @@ class UTankBarrel;
 class UTankTurret;
 
 
+UENUM()
+enum class EFiringState : uint8
+{
+    Reloading,
+    Aiming,
+    Locked
+};
+
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
@@ -37,6 +46,10 @@ protected:
 
 private:
     void MoveBarrelTowards(FVector const &AimDirection);
+
+protected:
+    UPROPERTY(BlueprintReadOnly, Category = "State")
+    EFiringState FiringState = EFiringState::Reloading;
 
 private:
     UPROPERTY()
