@@ -38,9 +38,6 @@ protected:
     UPROPERTY()
     UTankAimingComponent* AimingComponent;
 
-    UPROPERTY(BlueprintReadOnly)
-    UTankMovementComponent* TankMovementComponent;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

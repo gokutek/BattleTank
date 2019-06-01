@@ -15,8 +15,6 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
     AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
-
-    TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
 }
 
 // Called when the game starts or when spawned
@@ -64,6 +62,7 @@ void ATank::Fire()
         FRotator const Rotation = TankBarrel->GetSocketRotation(FName("Projectile"));
 
         AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Location, Rotation);
+        verify(Projectile != nullptr);
         Projectile->LaunchProjectile(LaunchSpeed);
 
         LastFireSeconds = FPlatformTime::Seconds();
