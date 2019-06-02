@@ -4,11 +4,18 @@
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tank.h"
+#include "TankAimingComponent.h"
 
 
 void ATankPlayerController::BeginPlay()
 {
     Super::BeginPlay();
+    
+    UTankAimingComponent* AimingComponent = GetControllerTank()->FindComponentByClass<UTankAimingComponent>();
+    if (AimingComponent)
+    {
+        FoundAimingComponent(AimingComponent);
+    }
 }
 
 

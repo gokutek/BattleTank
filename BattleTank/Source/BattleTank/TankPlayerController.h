@@ -8,6 +8,7 @@
 
 
 class ATank;
+class UTankAimingComponent;
 
 
 /**
@@ -31,6 +32,9 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Setup")
     ATank* GetControllerTank() const;
+
+    UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+    void FoundAimingComponent(UTankAimingComponent* AimingComponent);
 
     void AimTowardsCrosshair();
 
