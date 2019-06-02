@@ -18,18 +18,6 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-void UTankAimingComponent::SetBarrel(UTankBarrel* Barrel)
-{
-    this->Barrel = Barrel;
-}
-
-
-void UTankAimingComponent::SetTurret(UTankTurret* Turret)
-{
-    this->Turret = Turret;
-}
-
-
 // Called when the game starts
 void UTankAimingComponent::BeginPlay()
 {
@@ -37,6 +25,13 @@ void UTankAimingComponent::BeginPlay()
 
 	// ...
 	
+}
+
+
+void UTankAimingComponent::Initialise(UTankBarrel* Barrel, UTankTurret* Turret)
+{
+    this->Barrel = Barrel;
+    this->Turret = Turret;
 }
 
 

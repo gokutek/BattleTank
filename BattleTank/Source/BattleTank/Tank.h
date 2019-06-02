@@ -25,26 +25,12 @@ public:
 
     void AimAt(FVector const& HitLocation);
 
-    UFUNCTION(BlueprintCallable, Category = Setup)
-    void SetBarrel(UTankBarrel* Barrel);
-
-    UFUNCTION(BlueprintCallable, Category = Setup)
-    void SetTurret(UTankTurret* Turret);
-
     UFUNCTION(BlueprintCallable, Category = Firing)
     void Fire();
 
 protected:
     UPROPERTY(BlueprintReadOnly)
     UTankAimingComponent* AimingComponent;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
     UPROPERTY(EditDefaultsOnly, Category = Firing)

@@ -28,17 +28,15 @@ public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
+    // 设置炮筒、炮台组件的引用
+    UFUNCTION(BlueprintCallable, Category = "Setup")
+    void Initialise(UTankBarrel* Barrel, UTankTurret* Turret);
+
     // Called every frame
     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
     // 将炮筒以指定的速度瞄向指定的点
     void AimAt(FVector const &HitLocation, float LaunchSpeed);
-
-    // 设置炮筒组件的引用
-    void SetBarrel(UTankBarrel* Barrel);
-
-    // 设置炮台组件的引用
-    void SetTurret(UTankTurret* Turret);
 
 protected:
 	// Called when the game starts
