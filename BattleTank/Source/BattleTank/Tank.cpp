@@ -18,7 +18,7 @@ ATank::ATank()
 
 void ATank::AimAt(FVector const& HitLocation)
 {
-    if (AimingComponent)
+    if (ensure(AimingComponent))
     {
         AimingComponent->AimAt(HitLocation, LaunchSpeed);
     }
