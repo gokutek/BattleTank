@@ -9,7 +9,6 @@
 
 class UTankBarrel;
 class UTankTurret;
-class UTankAimingComponent;
 class AProjectile;
 class UTankMovementComponent;
 
@@ -23,19 +22,14 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-    void AimAt(FVector const& HitLocation);
-
     UFUNCTION(BlueprintCallable, Category = Firing)
     void Fire();
 
 protected:
     void BeginPlay() override;
 
-protected:
-    UPROPERTY(BlueprintReadOnly)
-    UTankAimingComponent* AimingComponent;
-
 private:
+    // TODO: moving into TankAimingComponent
     UPROPERTY(EditDefaultsOnly, Category = Firing)
     float LaunchSpeed = 4000;
 
