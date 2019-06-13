@@ -16,6 +16,13 @@ ATank::ATank()
 }
 
 
+void ATank::BeginPlay()
+{
+    Super::BeginPlay();
+    AimingComponent = FindComponentByClass<UTankAimingComponent>();
+}
+
+
 void ATank::AimAt(FVector const& HitLocation)
 {
     if (ensure(AimingComponent))

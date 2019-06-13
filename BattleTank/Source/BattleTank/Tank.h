@@ -29,6 +29,9 @@ public:
     void Fire();
 
 protected:
+    void BeginPlay() override;
+
+protected:
     UPROPERTY(BlueprintReadOnly)
     UTankAimingComponent* AimingComponent;
 
