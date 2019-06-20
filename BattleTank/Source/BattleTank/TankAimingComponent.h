@@ -8,6 +8,7 @@
 
 class UTankBarrel;
 class UTankTurret;
+class AProjectile;
 
 
 UENUM()
@@ -32,6 +33,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Setup")
     void Initialise(UTankBarrel* Barrel, UTankTurret* Turret);
 
+    UFUNCTION(BlueprintCallable, Category = Firing)
+    void Fire();
+
     // Called every frame
     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -52,10 +56,18 @@ protected:
     UPROPERTY(EditDefaultsOnly, Category = Firing)
     float LaunchSpeed = 4000;
 
+    UPROPERTY(EditDefaultsOnly, Category = Firing)
+    TSubclassOf<AProjectile> ProjectileBlueprint;
+
+    UPROPERTY(EditDefaultsOnly, Category = Firing)
+    float ReloadTimeInSeconds = 3.0f;
+
 private:
     UPROPERTY()
     UTankBarrel* Barrel;
 
     UPROPERTY()
     UTankTurret* Turret;
+
+    double LastFireSeconds = 0.0;
 };
