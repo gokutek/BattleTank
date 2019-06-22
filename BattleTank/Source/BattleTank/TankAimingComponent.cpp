@@ -19,13 +19,26 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
+
 // Called when the game starts
 void UTankAimingComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
 	// ...
-	
+    LastFireSeconds = FPlatformTime::Seconds();
+    FiringState = EFiringState::Reloading;
+}
+
+
+// Called every frame
+void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+    Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+    if (FPlatformTime::Seconds() - LastFireSeconds > ReloadTimeInSeconds) {
+        FiringState = EFiringState::Reloading;
+    }
 }
 
 
@@ -33,15 +46,6 @@ void UTankAimingComponent::Initialise(UTankBarrel* Barrel, UTankTurret* Turret)
 {
     this->Barrel = Barrel;
     this->Turret = Turret;
-}
-
-
-// Called every frame
-void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 
