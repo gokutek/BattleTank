@@ -105,8 +105,6 @@ bool UTankAimingComponent::IsBarrelMoving()
 
 void UTankAimingComponent::Fire()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Fire..."));
-
     if (FiringState != EFiringState::Reloading && ProjectileBlueprint) {
         FVector const Location = Barrel->GetSocketLocation(FName("Projectile"));
         FRotator const Rotation = Barrel->GetSocketRotation(FName("Projectile"));

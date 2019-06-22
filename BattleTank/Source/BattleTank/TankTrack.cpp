@@ -8,6 +8,14 @@ UTankTrack::UTankTrack()
 }
 
 
+void UTankTrack::BeginPlay()
+{
+    Super::BeginPlay();
+
+    OnComponentHit.AddDynamic(this, &UTankTrack::OnHit);
+}
+
+
 void UTankTrack::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
     float SlippageSpeed = FVector::DotProduct(GetComponentVelocity(), GetRightVector());
@@ -29,4 +37,10 @@ void UTankTrack::SetThrottle(float Throttle)
     FVector Force = GetForwardVector() * Throttle * TrackMaxDrivingForce;
     UPrimitiveComponent* Tank = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
     Tank->AddForceAtLocation(Force, GetComponentLocation());
+}
+
+
+void UTankTrack::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+    UE_LOG(LogTemp, Warning, TEXT(" UTankTrack::OnHit"));
 }
