@@ -19,7 +19,6 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-
 // Called when the game starts
 void UTankAimingComponent::BeginPlay()
 {
@@ -36,8 +35,12 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-    if (FPlatformTime::Seconds() - LastFireSeconds > ReloadTimeInSeconds) {
+    if (FPlatformTime::Seconds() - LastFireSeconds < ReloadTimeInSeconds) {
         FiringState = EFiringState::Reloading;
+    } else if (IsBarrelMoving()) {
+        FiringState = EFiringState::Aiming;
+    } else {
+        FiringState = EFiringState::Locked;
     }
 }
 
@@ -71,7 +74,7 @@ void UTankAimingComponent::AimAt(FVector const &HitLocation)
         return;
     }
 
-    FVector AimDirection = TossVelocity.GetSafeNormal();
+    AimDirection = TossVelocity.GetSafeNormal();
 
     MoveBarrelTowards(AimDirection);
 }
@@ -87,13 +90,24 @@ void UTankAimingComponent::MoveBarrelTowards(FVector const &AimDirection)
 }
 
 
+bool UTankAimingComponent::IsBarrelMoving()
+{
+    if (!ensure(Barrel)) { return false; }
+
+    if (Barrel->GetForwardVector().Equals(AimDirection, 0.01f))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+
 void UTankAimingComponent::Fire()
 {
     UE_LOG(LogTemp, Warning, TEXT("Fire..."));
 
-    bool isReloaded = FPlatformTime::Seconds() - LastFireSeconds > ReloadTimeInSeconds;
-
-    if (isReloaded && Barrel && ProjectileBlueprint) {
+    if (FiringState != EFiringState::Reloading && ProjectileBlueprint) {
         FVector const Location = Barrel->GetSocketLocation(FName("Projectile"));
         FRotator const Rotation = Barrel->GetSocketRotation(FName("Projectile"));
 
