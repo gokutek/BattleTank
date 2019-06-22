@@ -19,8 +19,6 @@ public:
 
     virtual void BeginPlay() override;
 
-    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
-
     // Sets a throttle between -1 and +1
     UFUNCTION(BlueprintCallable, Category = Input)
     void SetThrottle(float Throttle);
@@ -32,4 +30,11 @@ public:
 private:
     UFUNCTION()
     void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+    void ApplySidewaysForce();
+
+    void DriveTank();
+
+private:
+    float CurrentThrottle = 0.0f;
 };
