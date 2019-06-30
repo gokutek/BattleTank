@@ -43,6 +43,8 @@ public:
     // 将炮筒以指定的速度瞄向指定的点
     void AimAt(FVector const &HitLocation);
 
+    EFiringState GetFiringState() const;
+
 private:
     void MoveBarrelTowards(FVector const &AimDirection);
 

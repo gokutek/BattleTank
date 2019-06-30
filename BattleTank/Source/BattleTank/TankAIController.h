@@ -18,6 +18,9 @@ class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 	
+protected:
+    UPROPERTY(EditAnywhere, Category = "Setup")
+    float Distance = 8000.f;
 	
 public:
     ATankAIController();
@@ -25,7 +28,4 @@ public:
     virtual void BeginPlay() override;
 
     virtual void Tick(float DeltaTime) override;
-
-private:
-    float Distance = 3000.f;
 };

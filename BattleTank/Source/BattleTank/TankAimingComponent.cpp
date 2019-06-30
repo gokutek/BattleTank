@@ -80,6 +80,12 @@ void UTankAimingComponent::AimAt(FVector const &HitLocation)
 }
 
 
+EFiringState UTankAimingComponent::GetFiringState() const
+{
+    return FiringState;
+}
+
+
 void UTankAimingComponent::MoveBarrelTowards(FVector const &AimDirection)
 {
     FRotator const BarrelRotator = Barrel->GetForwardVector().Rotation();
